@@ -4,13 +4,16 @@
 	import Device from 'svelte-device-info';
 	import Confetti from './Confetti.svelte';
 
+	const INITIAL_SPEED = 1270;
+	const LOSER_MESSAGES = ['EPIC FAIL', 'EPIC NOOB'];
 	let width, height;
 	let dialog;
 	//rows first
 	let playGrid = Array.from({ length: 14 }, () => Array(9).fill(0));
 
 	let current = { x: 0, y: playGrid.length - 1 };
-	let speed = 1300;
+
+	let speed = 1270;
 	let multiplier = 1;
 	let dead = false;
 	let win = false;
@@ -35,7 +38,7 @@
 		});
 		current.x = 0;
 		current.y = playGrid.length - 1;
-		speed = 1300;
+		speed = INITIAL_SPEED;
 		multiplier = 1;
 		dead = false;
 		win = false;
@@ -102,6 +105,11 @@
 		}
 	};
 
+	const getLoserMessage = () => {
+		const index = Math.floor(Math.random() * LOSER_MESSAGES.length);
+		return LOSER_MESSAGES[index];
+	};
+
 	onMount(() => {
 		intervalId = setInterval(() => move(current.x + 1, current.y), speed / 10);
 		window.addEventListener('keydown', handleKeyDown);
@@ -109,7 +117,7 @@
 	});
 </script>
 
-<svelte:window bind:innerHeight={height} bind:innerWidth={width} />
+<svelte:window bind:outerHeight={height} bind:outerWidth={width} />
 <div
 	style="background-image: 
   linear-gradient(
@@ -139,7 +147,9 @@
 			<div class="flex">
 				{#each row as _, x}
 					<div
-						style={`height: ${height / playGrid.length - 11}px`}
+						style={width > 680
+							? `height: ${height / playGrid.length - 20}px`
+							: `height: ${height / playGrid.length - 24}px`}
 						class="aspect-square
                 //active cell
                 {current.x === x && current.y === y ? `${activeCellColor}` : ''}
@@ -161,7 +171,7 @@
 			LEGEND, YOU WIN
 		{/if}
 		{#if dead}
-			EPIC FAIL <br /><br />
+			{getLoserMessage()} <br /><br />
 			{!Device.isMobile ? 'SPACE TO PLAY AGAIN' : 'TAP TO PLAY AGAIN'}
 		{/if}
 	</Dialog>
