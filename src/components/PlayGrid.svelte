@@ -156,17 +156,14 @@
     hsl(17.14, 46.67%, 50%) 100%
   );
 "
-	class="border-gray-400 border-2 overflow-hidden"
+	class="border-gray-400 border-2 overflow-hidden w-full"
 >
 	<div class="">
 		{#each playGrid as row, y}
 			<div class="flex">
 				{#each row as _, x}
 					<div
-						style={width > 680
-							? `height: ${height / playGrid.length - 15}px`
-							: `height: ${height / playGrid.length - 21}px`}
-						class="aspect-square
+						class="aspect-square flex flex-auto
                 //active cell
                 {current.x === x && current.y === y ? `${activeCellColor}` : ''}
                 {current.x === x && current.y === y && dead ? `${deadCellColor}` : ''}
