@@ -28,6 +28,7 @@
 	"type": "module",
 	"dependencies": {
 		"svelte-confetti": "^1.2.4",
-		"svelte-device-info": "^1.0.0"
+		"svelte-device-info": "^1.0.0",
+		"svelte-viewport-info": "^1.0.0"
 	}
 }

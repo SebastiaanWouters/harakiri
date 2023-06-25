@@ -1,6 +1,5 @@
 <script>
 	export let dialog;
-	export let text;
 </script>
 
 <dialog

@@ -3,7 +3,7 @@
 </script>
 
 <div
-	class="w-full max-w-xl p-4 pt-6 md:pt-8 mx-auto flex flex-col gap-6 md:gap-8 items-center font-inter text-gray-200"
+	class="w-full max-w-xl p-4 pt-8 mx-auto flex flex-col gap-8 items-center font-inter text-gray-200"
 >
 	<h1
 		class="bg-clip-text text-transparent font-extrabold text-6xl bg-gradient-to-r from-accent1-400 to-accent2-400 uppercase"

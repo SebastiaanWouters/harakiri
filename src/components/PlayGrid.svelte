@@ -1,15 +1,31 @@
 <script>
 	import { onMount, tick } from 'svelte';
 	import Dialog from './Dialog.svelte';
-	import Device from 'svelte-device-info';
 	import Confetti from './Confetti.svelte';
+	import Device from 'svelte-device-info';
 
 	const INITIAL_SPEED = 1270;
 	const LOSER_MESSAGES = ['EPIC FAIL', 'EPIC NOOB'];
-	let width, height;
+	let width;
+	let height;
 	let dialog;
 	//rows first
-	let playGrid = Array.from({ length: 14 }, () => Array(9).fill(0));
+	let playGrid = [
+		[0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0]
+	];
 
 	let current = { x: 0, y: playGrid.length - 1 };
 
@@ -117,7 +133,7 @@
 	});
 </script>
 
-<svelte:window bind:outerHeight={height} bind:outerWidth={width} />
+<svelte:window bind:innerHeight={height} bind:innerWidth={width} />
 <div
 	style="background-image: 
   linear-gradient(
@@ -148,8 +164,8 @@
 				{#each row as _, x}
 					<div
 						style={width > 680
-							? `height: ${height / playGrid.length - 20}px`
-							: `height: ${height / playGrid.length - 24}px`}
+							? `height: ${height / playGrid.length - 15}px`
+							: `height: ${height / playGrid.length - 21}px`}
 						class="aspect-square
                 //active cell
                 {current.x === x && current.y === y ? `${activeCellColor}` : ''}
